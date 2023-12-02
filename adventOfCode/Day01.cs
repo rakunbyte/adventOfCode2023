@@ -14,27 +14,20 @@ public static class Day01
         Console.WriteLine($"Answer part 1: {part1Answer}");
         Console.WriteLine($"Answer part 2: {part2Answer}");
     }
+    
+    private static int SolvePart1(IEnumerable<string> input) => input.Sum(line => GetLeftNumber(line) * 10 + GetRightNumber(line));
 
     private static int SolvePart2(List<string> input) => input.Sum(line =>
     {
         var line2 = ReplaceNumbers(line);
         return GetLeftNumber(line2) * 10 + GetRightNumber(line2);
     });
-
-    private static int SolvePart1(IEnumerable<string> input) => input.Sum(line =>
-    {
-        return GetLeftNumber(line) * 10 + GetRightNumber(line);
-    });
-
+    
     private static int GetLeftNumber(string line)
     {
         for(var i = 0; i < line.Length; i++)
         {
-            var character = line[i];
-            if (char.IsNumber(character))
-            {
-                return character - '0';
-            }
+            if (char.IsNumber(line[i])) return line[i] - '0';
         }
 
         throw new Exception("No number found");
@@ -44,11 +37,7 @@ public static class Day01
     {
         for(var i = line.Length - 1; i > -1; i--)
         {
-            var character = line[i];
-            if (char.IsNumber(character))
-            {
-                return character - '0';
-            }
+            if (char.IsNumber(line[i])) return line[i] - '0';
         }
 
         throw new Exception("No number found");
