@@ -15,31 +15,16 @@ public static class Day01
         Console.WriteLine($"Answer part 2: {part2Answer}");
     }
 
-    private static int SolvePart2(List<string> input)
+    private static int SolvePart2(List<string> input) => input.Sum(line =>
     {
-        var sumPart2 = 0;
-        foreach (var line in input)
-        {
-            var line2 = ReplaceNumbers(line);
+        var line2 = ReplaceNumbers(line);
+        return GetLeftNumber(line2) * 10 + GetRightNumber(line2);
+    });
 
-            sumPart2 += GetLeftNumber(line2) * 10;
-            sumPart2 += GetRightNumber(line2);
-        }
-
-        return sumPart2;
-    }
-
-    private static int SolvePart1(List<string> input)
+    private static int SolvePart1(IEnumerable<string> input) => input.Sum(line =>
     {
-        var sumPart1 = 0;
-        foreach (var line in input)
-        {
-            sumPart1 += GetLeftNumber(line) * 10;
-            sumPart1 += GetRightNumber(line);
-        }
-
-        return sumPart1;
-    }
+        return GetLeftNumber(line) * 10 + GetRightNumber(line);
+    });
 
     private static int GetLeftNumber(string line)
     {
