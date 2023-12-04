@@ -23,9 +23,11 @@ public class Day02
     [TestMethod]
     public void Part2()
     {
+        var games = Input.Select(x => new Game(x));
+        var result = games.Sum(x => x.Power);
         
+        Assert.AreEqual(63711, result);
     }
-
 }
 
 public class Game
@@ -36,6 +38,7 @@ public class Game
     public int maxBlueCubes => Rounds.Max(x => x.BlueCubes);
     public int maxGreenCubes => Rounds.Max(x => x.GreenCubes);
     public int maxRedCubes => Rounds.Max(x => x.RedCubes);
+    public long Power => maxBlueCubes * maxGreenCubes * maxRedCubes;
 
     public Game(string line)
     {
